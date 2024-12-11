@@ -16,9 +16,9 @@ import com.gradle.develocity.agent.maven.api.DevelocityApi;
 import com.gradle.develocity.agent.maven.api.DevelocityListener;
 
 @SuppressWarnings("deprecation")
-@Component(role = DevelocityListener.class, hint = "hibernate-search-build-cache",
-        description = "Configures Develocity for the Hibernate Search project")
-public class HibernateSearchProjectDevelocityListener implements DevelocityListener {
+@Component(role = DevelocityListener.class, hint = "hibernate-maven-based-project-build-cache",
+        description = "Configures Develocity for the Hibernate projects using Maven as a build tool")
+public class HibernateMavenBasedProjectDevelocityListener implements DevelocityListener {
 
 
     @Override
