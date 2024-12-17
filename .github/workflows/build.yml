@@ -36,4 +36,4 @@ jobs:
 
     - name: Delete Artifacts From Cache
       shell: bash
-      run: rm -rf ~/.m2/repository/org/hibernate/search/develocity/
+      run: rm -rf ~/.m2/repository/org/hibernate/infra/develocity/
