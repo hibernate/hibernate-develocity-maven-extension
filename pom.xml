@@ -12,6 +12,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <develocity-maven-extension.version>1.23</develocity-maven-extension.version>
+        <!--
+            When updating maven version:
+             - Adjust the Jenkins files to reference the same version
+             - Regenerate the maven wrapper with mvn wrapper:wrapper
+         -->
         <maven-core.version>3.9.9</maven-core.version>
         <plexus-component.version>2.2.0</plexus-component.version>
         <sisu-inject.version>0.3.5</sisu-inject.version>
@@ -26,7 +31,9 @@
         <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
         <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
-        <version.gpg.plugin>3.2.7</version.gpg.plugin>
+        <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
+        <!-- Run mvn wrapper:wrapper when updating the wrapper plugin version -->
+        <maven-wrapper-plugin.version>3.3.2</maven-wrapper-plugin.version>
 
         <gpg.sign.skip>true</gpg.sign.skip>
 
@@ -107,6 +114,15 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-wrapper-plugin</artifactId>
+                <version>${maven-wrapper-plugin.version}</version>
+                <configuration>
+                    <mavenVersion>${maven-core.version}</mavenVersion>
+                    <distributionType>bin</distributionType>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
@@ -157,7 +173,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>${version.gpg.plugin}</version>
+                <version>${maven-gpg-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
