@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <develocity-maven-extension.version>1.23</develocity-maven-extension.version>
+        <develocity-maven-extension.version>1.23.1</develocity-maven-extension.version>
         <!--
             When updating maven version:
              - Adjust the Jenkins files to reference the same version
