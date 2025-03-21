@@ -64,7 +64,7 @@ public class SurefireConfiguredPlugin extends SimpleConfiguredPlugin {
 					value = "";
 				}
 				if ( value.startsWith( context.metadata().getSession().getExecutionRootDirectory() ) ) {
-					if ( TEST_INDEXES_PATTERN.matcher( "test-indexes" ).find() ) {
+					if ( TEST_INDEXES_PATTERN.matcher( value ).find() ) {
 						// Lucene indexes used in tests -- we don't care about these.
 						inputs.ignore( keyForDevelocity );
 					}
