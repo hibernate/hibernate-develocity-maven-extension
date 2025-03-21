@@ -10,7 +10,7 @@ Continuous integration happens on a self-hosted Jenkins instance at https://ci.h
 
 ## Release
 
-* Go to [CI](https://ci.hibernate.org/job/hibernate-develocity-maven-extension/).
+* Go to [the release job on CI](https://ci.hibernate.org/job/hibernate-develocity-maven-extension-release/).
 * Click the "play" button (green triangle) to launch a build.
 * Input the parameters.
 * Click "Build".
