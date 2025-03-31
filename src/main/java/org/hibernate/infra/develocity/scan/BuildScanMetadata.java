@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Profile;
+import org.apache.maven.project.MavenProject;
 import org.hibernate.infra.develocity.GoalMetadataProvider;
 import org.hibernate.infra.develocity.Log;
 import org.hibernate.infra.develocity.util.JavaVersions;
@@ -36,7 +37,10 @@ public final class BuildScanMetadata {
 		if ( !isBlank( mavenCommandLine ) ) {
 			buildScanApi.value( "Maven command line", mavenCommandLine );
 		}
-		buildScanApi.tag(mavenSession.getTopLevelProject().getGroupId());
+		MavenProject topLevelProject = mavenSession.getTopLevelProject();
+		if (topLevelProject != null) {
+			buildScanApi.tag(topLevelProject.getGroupId());
+		}
 	}
 
 
