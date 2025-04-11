@@ -27,22 +27,12 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.release>17</maven.compiler.release>
         <maven.compiler.parameters>true</maven.compiler.parameters>
-        <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
         <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
         <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
-        <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
         <!-- Run mvn wrapper:wrapper when updating the wrapper plugin version -->
         <maven-wrapper-plugin.version>3.3.2</maven-wrapper-plugin.version>
-
-        <gpg.sign.skip>true</gpg.sign.skip>
-
-        <!-- Repository Deployment URLs -->
-        <ossrh.releases.repo.id>ossrh</ossrh.releases.repo.id>
-        <ossrh.releases.repo.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</ossrh.releases.repo.url>
-        <ossrh.releases.repo.baseUrl>https://oss.sonatype.org/</ossrh.releases.repo.baseUrl>
-        <ossrh.snapshots.repo.id>ossrh</ossrh.snapshots.repo.id>
-        <ossrh.snapshots.repo.url>https://oss.sonatype.org/content/repositories/snapshots</ossrh.snapshots.repo.url>
+        <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -172,22 +162,8 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>${maven-gpg-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                        <configuration>
-                            <skip>${gpg.sign.skip}</skip>
-                            <homedir>${env.RELEASE_GPG_HOMEDIR}</homedir>
-                            <bestPractices>true</bestPractices>
-                        </configuration>
-                    </execution>
-                </executions>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
@@ -215,25 +191,12 @@
         <url>http://ci.hibernate.org/</url>
     </ciManagement>
 
-    <distributionManagement>
-        <repository>
-            <id>${ossrh.releases.repo.id}</id>
-            <name>OSSRH Releases Repository</name>
-            <url>${ossrh.releases.repo.url}</url>
-        </repository>
-        <snapshotRepository>
-            <id>${ossrh.snapshots.repo.id}</id>
-            <name>OSSRH Snapshots Repository</name>
-            <url>${ossrh.snapshots.repo.url}</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <scm>
         <url>https://github.com/hibernate/hibernate-develocity-maven-extension</url>
         <connection>scm:git:git@github.com:hibernate/hibernate-develocity-maven-extension.git</connection>
         <developerConnection>scm:git:git@github.com:hibernate/hibernate-develocity-maven-extension.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <issueManagement>
         <system>GitHub</system>
@@ -250,22 +213,10 @@
                 </property>
             </activation>
             <properties>
-                <gpg.sign.skip>false</gpg.sign.skip>
+                <altDeploymentRepository>local::file:${maven.multiModuleProjectDirectory}/target/staging-deploy/maven</altDeploymentRepository>
             </properties>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${nexus-staging-maven-plugin.version}</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <nexusUrl>${ossrh.releases.repo.baseUrl}</nexusUrl>
-                            <serverId>${ossrh.releases.repo.id}</serverId>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                            <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
-                        </configuration>
-                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
