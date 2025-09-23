@@ -11,6 +11,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <local.staging.root.directory>${maven.multiModuleProjectDirectory}/target/staging-deploy</local.staging.root.directory>
+
         <develocity-maven-extension.version>2.2</develocity-maven-extension.version>
         <!--
             When updating maven version:
@@ -213,7 +215,7 @@
                 </property>
             </activation>
             <properties>
-                <altDeploymentRepository>local::file:${maven.multiModuleProjectDirectory}/target/staging-deploy/maven</altDeploymentRepository>
+                <altDeploymentRepository>local::file:${local.staging.root.directory}/maven</altDeploymentRepository>
             </properties>
             <build>
                 <plugins>
@@ -245,7 +247,11 @@
                                 <id>attach-javadocs</id>
                                 <goals>
                                     <goal>jar</goal>
+                                    <goal>javadoc</goal>
                                 </goals>
+                                <configuration>
+                                    <outputDirectory>${local.staging.root.directory}/documentation/</outputDirectory>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
