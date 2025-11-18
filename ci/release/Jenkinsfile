@@ -63,11 +63,11 @@ pipeline {
                                              string(credentialsId: 'Hibernate-CI.github.com', variable: 'JRELEASER_GITHUB_TOKEN'),
                                              file(credentialsId: 'release.gpg.private-key', variable: 'RELEASE_GPG_PRIVATE_KEY_PATH'),
                                              string(credentialsId: 'release.gpg.passphrase', variable: 'JRELEASER_GPG_PASSPHRASE')]) {
-                                sshagent(['ed25519.Hibernate-CI.github.com', 'hibernate.filemgmt.jboss.org', 'jenkins.in.relation.to']) {
+                                sshagent(['ed25519.Hibernate-CI.github.com', 'jenkins.in.relation.to']) {
                                     sh 'mvn -v'
                                     sh 'cat $HOME/.ssh/config'
                                     dir('.release/scripts') {
-                                        sh 'git clone --branch test/github-releases https://github.com/hibernate/hibernate-release-scripts.git .'
+                                        sh 'git clone https://github.com/hibernate/hibernate-release-scripts.git .'
                                     }
                                     sh """
 										bash -xe .release/scripts/release.sh -j ${params.RELEASE_DRY_RUN ? '-d' : ''} \
