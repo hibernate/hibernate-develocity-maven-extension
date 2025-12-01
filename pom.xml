@@ -30,7 +30,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
-        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
         <maven-shade-plugin.version>3.6.1</maven-shade-plugin.version>
         <!-- Run mvn wrapper:wrapper when updating the wrapper plugin version -->
         <maven-wrapper-plugin.version>3.3.4</maven-wrapper-plugin.version>
