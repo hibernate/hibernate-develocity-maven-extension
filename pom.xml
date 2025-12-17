@@ -13,7 +13,7 @@
 
         <local.staging.root.directory>${maven.multiModuleProjectDirectory}/target/staging-deploy</local.staging.root.directory>
 
-        <develocity-maven-extension.version>2.2.1</develocity-maven-extension.version>
+        <develocity-maven-extension.version>2.3</develocity-maven-extension.version>
         <!--
             When updating maven version:
              - Adjust the Jenkins files to reference the same version
