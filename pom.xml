@@ -19,7 +19,7 @@
              - Adjust the Jenkins files to reference the same version
              - Regenerate the maven wrapper with mvn wrapper:wrapper
          -->
-        <maven-core.version>3.9.12</maven-core.version>
+        <maven-core.version>3.9.14</maven-core.version>
         <plexus-component.version>2.2.0</plexus-component.version>
         <sisu-inject.version>1.0.0</sisu-inject.version>
         <junit.version>6.0.3</junit.version>
@@ -31,7 +31,7 @@
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
-        <maven-shade-plugin.version>3.6.1</maven-shade-plugin.version>
+        <maven-shade-plugin.version>3.6.2</maven-shade-plugin.version>
         <!-- Run mvn wrapper:wrapper when updating the wrapper plugin version -->
         <maven-wrapper-plugin.version>3.3.4</maven-wrapper-plugin.version>
         <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
