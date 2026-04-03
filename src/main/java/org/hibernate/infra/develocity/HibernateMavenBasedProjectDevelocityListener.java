@@ -6,6 +6,7 @@ import com.gradle.develocity.agent.maven.api.scan.BuildScanPublishing;
 import org.apache.maven.execution.MavenSession;
 import org.codehaus.plexus.component.annotations.Component;
 import org.hibernate.infra.develocity.normalization.Normalization;
+import org.hibernate.infra.develocity.plugins.CheckstyleConfiguredPlugin;
 import org.hibernate.infra.develocity.plugins.CompilerConfiguredPlugin;
 import org.hibernate.infra.develocity.plugins.FailsafeConfiguredPlugin;
 import org.hibernate.infra.develocity.plugins.ForbiddenApisConfiguredPlugin;
@@ -34,7 +35,8 @@ public class HibernateMavenBasedProjectDevelocityListener implements DevelocityL
                 new CompilerConfiguredPlugin(),
                 new SurefireConfiguredPlugin(),
                 new FailsafeConfiguredPlugin(),
-                new ForbiddenApisConfiguredPlugin()
+                new ForbiddenApisConfiguredPlugin(),
+                new CheckstyleConfiguredPlugin()
         );
 
         for (ConfiguredPlugin configuredGoal : configuredGoals) {
