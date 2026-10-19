@@ -176,6 +176,10 @@ public final class BuildScanMetadata {
 						.findFirst()
 						.orElseThrow();
 			}
+			int digestIndex = ref.indexOf( '@' );
+			if ( digestIndex >= 0 ) {
+				ref = ref.substring( 0, digestIndex );
+			}
 			if ( !Strings.isBlank( versionOverride ) ) {
 				ref = ref.substring( 0, ref.lastIndexOf( ':' ) + 1 ) + versionOverride;
 			}
