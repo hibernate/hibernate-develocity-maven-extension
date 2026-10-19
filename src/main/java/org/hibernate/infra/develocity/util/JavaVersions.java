@@ -17,14 +17,14 @@ public final class JavaVersions {
 	private static final Map<String, String> versionByExecutablePath = new ConcurrentHashMap<>();
 
 	public static String forJavaExecutable(String javaPath) {
-		if ( javaPath == null || javaPath.isBlank() ) {
+		if ( javaPath == null || javaPath.isBlank() || containsUnexpandedExpression( javaPath ) ) {
 			return Runtime.version().toString();
 		}
 		return JavaVersions.forExecutable( javaPath );
 	}
 
 	public static String forJavacExecutable(String javacPath) {
-		if ( javacPath == null || javacPath.isBlank() ) {
+		if ( javacPath == null || javacPath.isBlank() || containsUnexpandedExpression( javacPath ) ) {
 			return Runtime.version().toString();
 		}
 		return JavaVersions.forExecutable( javacPath )
@@ -58,6 +58,10 @@ public final class JavaVersions {
 						"Cannot guess java version for " + executablePath, e );
 			}
 		} );
+	}
+
+	static boolean containsUnexpandedExpression(String value) {
+		return value.contains( "${" );
 	}
 
 	public static String toJdkMajor(String fullVersionText, String defaultValue) {
