@@ -6,8 +6,34 @@ import org.hibernate.infra.develocity.util.JavaVersions;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class JavaVersionsTest {
+
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = {
+			" ",
+			"${maven.compiler.executable}",
+			"${env.JAVA_HOME}/bin/javac",
+			"some/${unexpanded}/path"
+	})
+	void forJavacExecutable_fallsBackToRuntimeVersion(String javacPath) {
+		assertEquals( Runtime.version().toString(), JavaVersions.forJavacExecutable( javacPath ) );
+	}
+
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = {
+			" ",
+			"${maven.compiler.executable}",
+			"${env.JAVA_HOME}/bin/java",
+			"some/${unexpanded}/path"
+	})
+	void forJavaExecutable_fallsBackToRuntimeVersion(String javaPath) {
+		assertEquals( Runtime.version().toString(), JavaVersions.forJavaExecutable( javaPath ) );
+	}
 
 	@ParameterizedTest
 	@CsvSource(textBlock = """
